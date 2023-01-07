@@ -4,14 +4,14 @@ import { ethers } from "../node_modules/ethers/dist/ethers.esm.js";
 const ConnectPage = () => {
     const [connected, setConnected] = useState(false);
     const [addressUser, setAddressUser] = useState("");
-    const [provider, setProvider] = useState(null);
-    const [signer, setSigner] = useState(null);
+    let provider = null
+    let signer = null
 
     const connect = async () => {
-        setProvider(new ethers.providers.Web3Provider(window.ethereum));
+        provider = new ethers.providers.Web3Provider(window.ethereum);
         if (provider) {
           await provider.send("eth_requestAccounts", []);
-          setSigner(provider.getSigner());
+          signer = provider.getSigner();
           if (signer) {
             setAddressUser(await signer.getAddress());
             setConnected(true);

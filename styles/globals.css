@@ -114,29 +114,6 @@ a {
   gap: 40px;
 }
 
-.entreprise {
-  max-width: 320px;
-  padding: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  gap: 20px;
-  border-radius: 20px;
-  border: 1px solid transparent;
-  cursor: pointer;
-}
-
-.entreprise h3 span {
-  color: var(--prim-lighter);
-}
-
-.entreprise:hover {
-  background: rgba(var(--card-rgb), 0.1);
-  border: 1px solid rgba(var(--card-border-rgb), 0.15);
-}
-
 .btn {
   padding: 10px 20px;
   cursor: pointer;

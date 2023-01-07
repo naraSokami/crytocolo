@@ -1,0 +1,28 @@
+.entreprise {
+	max-width: 320px;
+	padding: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+	gap: 20px;
+	border-radius: 20px;
+	border: 1px solid transparent;
+	cursor: pointer;
+}
+
+.entreprise img {
+	width: 80px;
+	height: 80px;
+	object-fit: contain;
+}
+
+.entreprise h3 span {
+	color: var(--prim-lighter);
+}
+
+.entreprise:hover {
+	background: rgba(var(--card-rgb), 0.1);
+	border: 1px solid rgba(var(--card-border-rgb), 0.15);
+}
