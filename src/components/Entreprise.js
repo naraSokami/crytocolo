@@ -1,32 +1,14 @@
-import { Box, Button, Card, CardActions, CardContent, Typography } from '@mui/material';
+import Link from "next/link"
 
-export default function ({data}) {
-	return (
-    <div className='entreprise'>
-			<Box sx={{ minWidth: 275 }}>
-				<Card variant="outlined">
-					<CardContent>
-						<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-							Word of the Day
-						</Typography>
-						<Typography variant="h5" component="div">
-							{data.name}
-						</Typography>
-						<Typography sx={{ mb: 1.5 }} color="text.secondary">
-							adjective
-						</Typography>
-						<Typography variant="body2">
-							{data.description}
-							<br />
-							{'"a benevolent smile"'}
-						</Typography>
-					</CardContent>
-					<CardActions>
-						<Button size="small">Learn More</Button>
-					</CardActions>
-				</Card>
-			</Box>
-			
-		</div>
-	)
-}
+export default function Page({data}) {
+    return (
+      <Link href={`/entreprises/${data.id}`}>
+        <div className="entreprise">
+          <h3><span>{data.name.slice(0, 1)}</span>{data.name.slice(1)}</h3>
+          <p>{data.description.slice(0, 120) + "..."}</p>
+          <button className="btn">Invest</button>
+        </div>
+      </Link>
+    )
+  }
+  

@@ -39,7 +39,8 @@
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
 
-  --prim: rgba(1, 65, 255, .5)
+  --prim: rgb(48, 91, 218);
+  --prim-lighter: rgb(96, 136, 255);
 }
 
 * {
@@ -124,20 +125,31 @@ a {
   gap: 20px;
   border-radius: 20px;
   border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.entreprise h3 span {
+  color: var(--prim-lighter);
+}
+
+.entreprise:hover {
+  background: rgba(var(--card-rgb), 0.1);
+  border: 1px solid rgba(var(--card-border-rgb), 0.15);
 }
 
 .btn {
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 20px;
-  background-color: rgb(48, 91, 218);
+  background-color: var(--prim);
   border: none;
   border: 1px solid transparent;
+  transition-duration: .1s;
 }
 
-.entreprise:hover {
-  background: rgba(var(--card-rgb), 0.1);
-  border: 1px solid rgba(var(--card-border-rgb), 0.15);
+.btn:hover {
+  background-color: #fff;
+  color: var(--prim);
 }
 
 @media (prefers-color-scheme: dark) {
