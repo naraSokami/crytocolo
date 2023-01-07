@@ -8,8 +8,8 @@ const ConnectPage = () => {
     const [signer, setSigner] = useState(null);
 
     const connect = async () => {
-        setProvider(new ethers.providers.Web3Provider(window.ethereum));
         await provider.send("eth_requestAccounts", []);
+        setProvider(new ethers.providers.Web3Provider(window.ethereum));
         setSigner(provider.getSigner());
         setAddressUser(await signer.getAddress());
         setConnected(true);
