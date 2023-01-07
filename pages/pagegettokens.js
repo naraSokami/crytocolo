@@ -8,11 +8,19 @@ const ConnectPage = () => {
     const [signer, setSigner] = useState(null);
 
     const connect = async () => {
-        await provider.send("eth_requestAccounts", []);
         setProvider(new ethers.providers.Web3Provider(window.ethereum));
-        setSigner(provider.getSigner());
-        setAddressUser(await signer.getAddress());
-        setConnected(true);
+        if (provider) {
+          await provider.send("eth_requestAccounts", []);
+          setSigner(provider.getSigner());
+          if (signer) {
+            setAddressUser(await signer.getAddress());
+            setConnected(true);
+          } else {
+            console.error('Signer is null');
+          }
+        } else {
+          console.error('Provider is null');
+        }
     };
 
     const invest = async () => {
