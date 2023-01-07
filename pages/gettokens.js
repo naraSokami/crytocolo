@@ -26,7 +26,7 @@ connectButton.addEventListener("click", async function () {
 invest.addEventListener("click", async function () {
 
   const transactionRequest = {
-    to: "0xDC18a7dc0823593A8e060ee177a78AE30d864834", //platform test address
+    to: "0xDC18a7dc0823593A8e060ee177a78AE30d864834", //platform Goerli test address
     from: `${addressUser}`,
     value: ethers.utils.parseEther(amount.value)
   }
