@@ -160,7 +160,6 @@ input:focus, textarea:focus {
   box-shadow: 0 0 10px 1px var(--prim);
 }
 
-
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

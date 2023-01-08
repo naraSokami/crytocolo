@@ -1,7 +1,28 @@
+import anime, { set } from 'animejs';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import styles from '../../styles/pages/company.module.sass';
 
 export default function Page({company}) {
+  const [displayedAmount, setAmount] = useState(0)
+
+  let amount = {
+    value: 0,
+  }
+
+  useEffect(() => {
+    anime({
+      targets: amount,
+      value: company.amount_received,
+      easing: 'linear',
+      round: 1,
+      update: function() {
+        console.log(amount.value);
+        setAmount(amount.value)
+      }
+    });
+  }, [])
+
   return (
     <div className={styles.company}>
       <div>
@@ -16,7 +37,7 @@ export default function Page({company}) {
       </div>
       <div>
         <h4>Total Amount Collected</h4>
-        <p>{company.amount_received}$</p>
+        <p><span className='amount'>{displayedAmount}</span>$</p>
       </div>
       <div>
         <button className='btn'>Invest</button>
@@ -28,7 +49,6 @@ export default function Page({company}) {
 
 export async function getServerSideProps({params}) {
   const {companies} = await import("/data/data.json")
-  console.log(params);
 
   return {
     props: {
