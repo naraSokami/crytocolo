@@ -2,9 +2,11 @@ import anime, { set } from 'animejs';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/pages/company.module.sass';
+import InvestModal from '../../src/components/investModal/InvestModal'
 
 export default function Page({company}) {
   const [displayedAmount, setAmount] = useState(0)
+  const [investingCompany, setInvestingCompany] = useState({})
 
   let amount = {
     value: 0,
@@ -40,9 +42,10 @@ export default function Page({company}) {
         <p><span className='amount'>{displayedAmount}</span>$</p>
       </div>
       <div>
-        <button className='btn'>Invest</button>
+        <button className='btn' onClick={ () => setInvestingCompany(company) }>Invest</button>
         <Link className='btn' href={company.link} target="_blank">See More</Link>
       </div>
+      <InvestModal company={investingCompany} setInvestingCompany={setInvestingCompany} />
     </div>
   )
 }
