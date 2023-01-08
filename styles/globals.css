@@ -109,12 +109,14 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
+
+  background: linear-gradient(90deg, rgba(0,117,230,1) 0%, rgba(8,0,97,1) 52%, rgba(0,0,0,1) 100%);
 }
 
 a {
