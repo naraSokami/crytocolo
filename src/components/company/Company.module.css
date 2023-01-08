@@ -1,4 +1,4 @@
-.entreprise {
+.company {
 	max-width: 320px;
 	padding: 30px;
 	display: flex;
@@ -12,17 +12,18 @@
 	cursor: pointer;
 }
 
-.entreprise img {
-	width: 80px;
+.company img {
+	width: 200px;
 	height: 80px;
 	object-fit: contain;
+	filter: brightness(0) invert(100%);
 }
 
-.entreprise h3 span {
+.company h3 span {
 	color: var(--prim-lighter);
 }
 
-.entreprise:hover {
+.company:hover {
 	background: rgba(var(--card-rgb), 0.1);
 	border: 1px solid rgba(var(--card-border-rgb), 0.15);
 }

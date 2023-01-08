@@ -39,12 +39,26 @@
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
 
-  --prim: rgb(48, 91, 218);
-  --prim-lighter: rgb(96, 136, 255);
+  --prim: #00bbff;
+  --prim-lighter: #33C9FF;
 }
 
 * {
   font-family: var(--font-mono);
+}
+
+*::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #222;
+  border-radius: 20px;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #333;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -107,13 +121,6 @@ a {
   text-decoration: none;
 }
 
-.entreprises {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-}
-
 .btn {
   padding: 10px 20px;
   cursor: pointer;
@@ -128,6 +135,31 @@ a {
   background-color: #fff;
   color: var(--prim);
 }
+
+.glow {
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 5px #fff, 0 0 20px 10px #fff, 0 0 100px 50px var(--prim);
+  position: relative;
+}
+
+input, textarea {
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 1px transparent;
+  border: none; 
+}
+
+textarea {
+  height: 150px;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 0 10px 1px var(--prim);
+}
+
 
 @media (prefers-color-scheme: dark) {
   html {
