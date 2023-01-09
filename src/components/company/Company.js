@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from './Company.module.css';
 import InvestModal from '../investModal/InvestModal'
 
-export default function Page({data}) {
+export default function Page({data, addNotif}) {
   const [investingCompany, setInvestingCompany] = useState({})
   
   return (
@@ -14,7 +14,7 @@ export default function Page({data}) {
         <p>{data.description.slice(0, 120) + "..."}</p>
         <button className="btn" onClick={ (e) => { e.preventDefault(); setInvestingCompany(data) } }>Invest</button>
       </div>
-      <InvestModal company={investingCompany} setInvestingCompany={setInvestingCompany} />
+      <InvestModal company={investingCompany} setInvestingCompany={setInvestingCompany} addNotif={addNotif} />
     </Link>
   )
 }

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import styles from '../../styles/pages/company.module.sass';
 import InvestModal from '../../src/components/investModal/InvestModal'
 
-export default function Page({company}) {
+export default function Page({company, addNotif}) {
   const [displayedAmount, setAmount] = useState(0)
   const [investingCompany, setInvestingCompany] = useState({})
 
@@ -19,7 +19,6 @@ export default function Page({company}) {
       easing: 'linear',
       round: 1,
       update: function() {
-        console.log(amount.value);
         setAmount(amount.value)
       }
     });
@@ -45,7 +44,7 @@ export default function Page({company}) {
         <button className='btn' onClick={ () => setInvestingCompany(company) }>Invest</button>
         <Link className='btn' href={company.link} target="_blank">See More</Link>
       </div>
-      <InvestModal company={investingCompany} setInvestingCompany={setInvestingCompany} />
+      <InvestModal company={investingCompany} setInvestingCompany={setInvestingCompany} addNotif={addNotif} />
     </div>
   )
 }
