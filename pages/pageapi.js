@@ -32,7 +32,7 @@ const WalletTracker = () => {
                         <p>Tx: https://goerli.etherscan.io/tx/{transaction.hash}</p>
                     </li>
                 ))}
-        </ul>
+            </ul>
         </div >
     );
 };
