@@ -8,6 +8,7 @@ const WalletTracker = () => {
     const INVESTOR1_ADDRESS = "0xbaaca50cba062881a36b396e642cf047c4cbff97";
     const INVESTOR2_ADDRESS = "0xc0ab5634589e474cbe93b0991fd6aeb91b13a367";
 
+
     useEffect(() => {
         const fetchTransactions = async () => {
             const response = await fetch(
