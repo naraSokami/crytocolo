@@ -10,16 +10,16 @@ const ConnectPage = () => {
     const connect = async () => {
         provider = new ethers.providers.Web3Provider(window.ethereum);
         if (provider) {
-          await provider.send("eth_requestAccounts", []);
-          signer = provider.getSigner();
-          if (signer) {
-            setAddressUser(await signer.getAddress());
-            setConnected(true);
-          } else {
-            console.error('Signer is null');
-          }
+            await provider.send("eth_requestAccounts", []);
+            signer = provider.getSigner();
+            if (signer) {
+                setAddressUser(await signer.getAddress());
+                setConnected(true);
+            } else {
+                console.error('Signer is null');
+            }
         } else {
-          console.error('Provider is null');
+            console.error('Provider is null');
         }
     };
 
