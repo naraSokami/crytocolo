@@ -18,14 +18,14 @@ const WalletTracker = () => {
 
   return (
     <div>
-      <h1>Transactions for Wallet: {WALLET_ADDRESS}</h1>
+      <h1>Platform wallet: {WALLET_ADDRESS}</h1>
       <ul>
         {transactions.map((transaction) => (
           <li key={transaction.hash}>
             <p>Amount: {transaction.value} wei</p>
             <p>To: {transaction.to}</p>
             <p>From: {transaction.from}</p>
-            <p>Block Number: {transaction.blockNumber}</p>
+            <p>Tx: https://goerli.etherscan.io/tx/{transaction.hash}</p>
           </li>
         ))}
       </ul>
