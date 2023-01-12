@@ -1,9 +1,11 @@
 import styles from '../styles/pages/welcome.module.sass';
 import * as THREE from "three";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Canvas, useFrame } from "react-three-fiber";
 import { Block, useBlock } from "../src/three/blocks";
 import state from "../src/three/store";
+import { useGLTF } from '@react-three/drei';
+import { useHover } from 'react-use-gesture';
 
 function Plane({ color = "white", ...props }) {
   return (
@@ -59,11 +61,19 @@ function Stripe() {
   );
 }
 
+function EcoLight() {
+  const glb = useGLTF("/models/ecoLight/scene.gltf", true)
+  return <primitive object={glb.scene} dispose={null} />
+}
+
 
 export default function () {
+  const [hovered, setHovered] = useState(false)
   const scrollArea = useRef();
   const onScroll = (e) => (state.top.current = e.target.scrollTop);
   useEffect(() => void onScroll({ target: scrollArea.current }), []);
+
+  const bind = useHover(({ hovering }) => setHovered(hovering))
 
   return (
     <>
@@ -72,9 +82,22 @@ export default function () {
         orthographic
         camera={{ zoom: state.zoom, position: [0, 0, 500] }}
       >
+        
         {/* First section */}
         <Block factor={1.5} offset={0}>
-          <Content left />
+            <ambientLight intensity={1} />
+            <mesh {...bind()}>
+              {/* <spotLight
+                penumbra={100}
+                distance={200}
+                angle={120}
+                anglePower={80}
+                intensity={3}
+              /> */}
+              <EcoLight />
+            </mesh>
+            {/* <Content left >
+            </Content> */}
         </Block>
         {/* Second section */}
         <Block factor={2.0} offset={1}>
