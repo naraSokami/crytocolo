@@ -96,7 +96,6 @@ export default function () {
         orthographic
         camera={{ zoom: state.zoom, position: [0, 0, 500] }}
       >
-        
         {/* First section */}
         <Block factor={1.5} offset={0}>
             <Content left >
@@ -123,11 +122,6 @@ export default function () {
         <Block factor={1.5} offset={3}>
           <Content />
         </Block>
-        {/* <PerspectiveCamera
-          position={[0, 0, 5]}
-          clearColor="#00ff00"
-          ref={camera}
-        /> */}
         <Environment preset={'studio'} blur={0.65} />
       </Canvas>
       <div className={styles.scrollArea} ref={scrollArea} onScroll={onScroll}>
