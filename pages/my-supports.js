@@ -36,8 +36,13 @@ export default function ({supports}) {
                 <h2><span style={{ color: 'var(--prim)' }}>{support.company.name.slice(0, 1)}</span>{support.company.name.slice(1)}</h2>
               </div>
               <div>
-                <h4>Total Support</h4>
-                <p>{support.value}<span>wei</span></p>
+                <h4>Transfert amount</h4>
+                {
+                  support.value < 1000000000 ?
+                  <p>{support.value}<span>wei</span></p> 
+                  :
+                  <p>{support.value / 10 ** 18}<span>eth</span></p> 
+                }
               </div>
             </div>
           ))
