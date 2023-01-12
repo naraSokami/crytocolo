@@ -85,7 +85,7 @@ export default function () {
         
         {/* First section */}
         <Block factor={1.5} offset={0}>
-            <ambientLight intensity={1} />
+            <ambientLight intensity={10} />
             <mesh {...bind()}>
               {/* <spotLight
                 penumbra={100}
