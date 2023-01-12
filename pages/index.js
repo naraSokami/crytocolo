@@ -92,8 +92,11 @@ export default function () {
             </Block>
           </Content>
         </Block>
+        <Block factor={1.5} offset={3}>
+          <Content />
+        </Block>
       </Canvas>
-      <div className="scrollArea" ref={scrollArea} onScroll={onScroll}>
+      <div className={styles.scrollArea} ref={scrollArea} onScroll={onScroll}>
         <div style={{ height: `${state.pages * 100}vh` }} />
       </div>
     </>
