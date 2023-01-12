@@ -31,7 +31,7 @@ export default function ({supports}) {
         <div>
         {
           transactions.map(support => (
-            <Link href={`https://goerli.etherscan.io/tx/${support.hash}`} key={support.blockHash} className={[styles.support, 'support'].join(' ')}>
+            <Link target="_blank" href={`https://goerli.etherscan.io/tx/${support.hash}`} key={support.blockHash} className={[styles.support, 'support'].join(' ')}>
               <div>
                 <img src={support.company.logo} />
                 <h2><span style={{ color: 'var(--prim)' }}>{support.company.name.slice(0, 1)}</span>{support.company.name.slice(1)}</h2>
