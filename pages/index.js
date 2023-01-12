@@ -4,7 +4,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { Canvas, useFrame } from "react-three-fiber";
 import { Block, useBlock } from "../src/three/blocks";
 import state from "../src/three/store";
-import { useGLTF } from '@react-three/drei';
+import { Environment, PerspectiveCamera, useGLTF } from '@react-three/drei';
 import { useHover } from 'react-use-gesture';
 
 function Plane({ color = "white", ...props }) {
@@ -40,10 +40,19 @@ function Content({ left, children }) {
   const alignRight = (canvasWidth - contentMaxWidth - margin) / 2;
   return (
     <group position={[alignRight * (left ? -1 : 1), 0, 0]}>
-      <Plane
-        scale={[contentMaxWidth, contentMaxWidth / aspect, 1]}
-        color="#bfe2ca"
-      />
+        {/* <Plane
+          scale={[contentMaxWidth, contentMaxWidth / aspect, 1]}
+          color="#bfe2ca"
+        /> */}
+      {/* <spotLight
+        // penumbra={100}
+        distance={200}
+        angle={80}
+        anglePower={10}
+        intensity={1}
+        color="#ffffff"
+        position={[0, 20, 10]}
+      /> */}
       {children}
     </group>
   );
@@ -56,7 +65,7 @@ function Stripe() {
       scale={[100, contentMaxWidth, 1]}
       rotation={[0, 0, Math.PI / 4]}
       position={[0, 0, -1]}
-      color="#e3f6f5"
+      color="#00bbff"
     />
   );
 }
@@ -66,12 +75,17 @@ function EcoLight() {
   return <primitive object={glb.scene} dispose={null} />
 }
 
+function DubaiTower() {
+  const glb = useGLTF("/models/pudgy_black_cat.glb", true)
+  return <primitive object={glb.scene} dispose={null} />
+}
 
 export default function () {
   const [hovered, setHovered] = useState(false)
   const scrollArea = useRef();
   const onScroll = (e) => (state.top.current = e.target.scrollTop);
   useEffect(() => void onScroll({ target: scrollArea.current }), []);
+  const camera = useRef(null);
 
   const bind = useHover(({ hovering }) => setHovered(hovering))
 
@@ -85,19 +99,10 @@ export default function () {
         
         {/* First section */}
         <Block factor={1.5} offset={0}>
-            <ambientLight intensity={1} />
-            <mesh {...bind()}>
-              {/* <spotLight
-                penumbra={100}
-                distance={200}
-                angle={120}
-                anglePower={80}
-                intensity={3}
-              /> */}
-              <EcoLight />
-            </mesh>
-            {/* <Content left >
-            </Content> */}
+            <Content left >
+              <ambientLight />
+              <DubaiTower />
+            </Content>
         </Block>
         {/* Second section */}
         <Block factor={2.0} offset={1}>
@@ -118,6 +123,12 @@ export default function () {
         <Block factor={1.5} offset={3}>
           <Content />
         </Block>
+        {/* <PerspectiveCamera
+          position={[0, 0, 5]}
+          clearColor="#00ff00"
+          ref={camera}
+        /> */}
+        <Environment preset={'studio'} blur={0.65} />
       </Canvas>
       <div className={styles.scrollArea} ref={scrollArea} onScroll={onScroll}>
         <div style={{ height: `${state.pages * 100}vh` }} />
