@@ -1,4 +1,5 @@
 import anime from 'animejs';
+import Link from 'next/link';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTransactions, selectFromAddressTransactions, update } from '../store/slices/transactions';
@@ -30,7 +31,7 @@ export default function ({supports}) {
         <div>
         {
           transactions.map(support => (
-            <div key={support.blockHash} className={[styles.support, 'support'].join(' ')}>
+            <Link href={`https://goerli.etherscan.io/tx/${support.hash}`} key={support.blockHash} className={[styles.support, 'support'].join(' ')}>
               <div>
                 <img src={support.company.logo} />
                 <h2><span style={{ color: 'var(--prim)' }}>{support.company.name.slice(0, 1)}</span>{support.company.name.slice(1)}</h2>
@@ -44,7 +45,7 @@ export default function ({supports}) {
                   <p>{support.value / 10 ** 18}<span>eth</span></p> 
                 }
               </div>
-            </div>
+            </Link>
           ))
         }
       </div>
