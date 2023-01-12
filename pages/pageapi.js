@@ -5,9 +5,8 @@ const WalletTracker = () => {
     const [transactions, setTransactions] = useState([]);
     const API_KEY = "KXGKEHGZVQXGMKEFA2VAFSAYD5GW5EAHAU";
     const WALLET_ADDRESS = "0xdc18a7dc0823593a8e060ee177a78ae30d864834";
-    const INVESTOR1_ADDRESS = "0xbaaca50cba062881a36b396e642cf047c4cbff97";
+    const INVESTOR1_ADDRESS = "0xbaaca50cba062881a36b396e642cf047c4cbff97"; 
     const INVESTOR2_ADDRESS = "0xc0ab5634589e474cbe93b0991fd6aeb91b13a367";
-
 
     useEffect(() => {
         const fetchTransactions = async () => {

@@ -2,6 +2,8 @@ import '../styles/globals.css'
 import Navbar from "../src/components/navbar/Navbar";
 import { useState } from 'react';
 import Notif from '../src/components/notif/Notif';
+import store from '../store/index'
+import { Provider } from 'react-redux' 
 
 export default function App({ Component, pageProps }) {
   const [notifs, setNotifs] = useState([]);
@@ -21,7 +23,9 @@ export default function App({ Component, pageProps }) {
         overflowY: 'scroll',
         position: 'relative',
       }}>
-        <Component {...pageProps} addNotif={addNotif} />
+        <Provider store={store}>
+          <Component {...pageProps} addNotif={addNotif} />
+        </Provider>
       </div>
       <div className="notifs">
         {

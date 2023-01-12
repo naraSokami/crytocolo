@@ -11,7 +11,7 @@
             "logo": "/img/logos/ecosia.png",
             "amount_received": 27623000,
             "link": "https://www.greenpeace.org",
-            "address": "0xDC18a7dc0823593A8e060ee177a78AE30d864834"
+            "address": "0xdc18a7dc0823593a8e060ee177a78ae30d864834"
         },
         {
             "id": 3,
@@ -20,7 +20,7 @@
             "logo": "/img/logos/amazon.png",
             "amount_received": 1200000,
             "link": "https://www.greenpeace.org",
-            "address": "0xDC18a7dc0823593A8e060ee177a78AE30d864834"
+            "address": "0xbaaca50cba062881a36b396e642cf047c4cbff97"
         },
         {
             "id": 4,
@@ -29,7 +29,7 @@
             "logo": "/img/logos/hearth-breath.png",
             "amount_received": 1200000,
             "link": "https://www.greenpeace.org",
-            "address": "0xDC18a7dc0823593A8e060ee177a78AE30d864834"
+            "address": "0xc0ab5634589e474cbe93b0991fd6aeb91b13a367"
         },
         {
             "id": 5,

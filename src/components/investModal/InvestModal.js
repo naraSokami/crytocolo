@@ -7,7 +7,7 @@ import Notif from '../notif/Notif';
 export default function Page({company, setInvestingCompany, addNotif}) {
   const [connected, setConnected] = useState(false);
   const [addressUser, setAddressUser] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
   
   if (!company.id) 
   return <></>
@@ -34,7 +34,7 @@ export default function Page({company, setInvestingCompany, addNotif}) {
   };
 
   const invest = async () => {
-      if (amount == 0)
+      if (amount == 0 ||amount == "")
         return 
 
       const transactionRequest = {
@@ -81,7 +81,7 @@ export default function Page({company, setInvestingCompany, addNotif}) {
           {connected && (
             <>
               <p>Connected with:<br/><span>{addressUser}</span></p>
-              <input type="number" placeholder='Amount' value={amount} onChange={ (e) => setAmount(e.target.value) } />
+              <input type="number" placeholder='Amount (eth)' value={amount} onChange={ (e) => setAmount(e.target.value) } />
               <button className='btn' onClick={invest}>
                   Invest
               </button>
