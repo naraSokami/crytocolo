@@ -41,7 +41,7 @@ export default function ({supports}) {
                   support.value < 1000000000 ?
                   <p>{support.value}<span>wei</span></p> 
                   :
-                  <p>{support.value / 10 ** 18}<span>eth</span></p> 
+                  <p>{support.value / 10 ** 18}<span> ETH</span></p> 
                 }
               </div>
             </div>
