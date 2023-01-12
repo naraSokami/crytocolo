@@ -1,10 +1,9 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit"
 import { companies } from "/data/data.json"
 
 export const fetchTransactions = createAsyncThunk(
   'transactions/fetchAll',
-  async (userId, thunkAPI) => {
-    console.log(process.env);
+  async () => {
     const API_KEY = "KXGKEHGZVQXGMKEFA2VAFSAYD5GW5EAHAU";
     const WALLET_ADDRESS = "0xdc18a7dc0823593a8e060ee177a78ae30d864834";
 
@@ -22,9 +21,13 @@ const transactionsSlice = createSlice({
     loading: false,
     error: null,
     transactions: [],
-    addressTransactions: [],
+    updateCount: 0
   },
-  reducers: {},
+  reducers: {
+    update(state) {
+      state.updateCount++
+    } 
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchTransactions.pending, state => {
       state.loading = true
@@ -40,22 +43,22 @@ const transactionsSlice = createSlice({
   }
 })
 
-
-// actions
-export const { getTransactions, getTransaction } = transactionsSlice.actions 
-
 // selectors
 export const selectLoading = state => state.loading
 export const selectTransactions = state => state.transactions
 export const selectFromAddressTransactions = ({address}) => (state) => {
-  // const {companies} = await import("/data/data.json")
-
-  return state.transactions
-    .filter(tr => tr.from === address)
+  console.log(address);
+  if (!address || address === '')
+    return []
+    
+  return state.transactions.transactions
+    .filter(tr => tr.from.toLowerCase() === address.toLowerCase())
     .map(tr => ({
       ...tr,
-      company: companies.find(company => company.address === tr.to)
+      company: companies.find(company => company.address.toLowerCase() == tr.to.toLowerCase())
     }))
 }
+
+export const {update} = transactionsSlice.actions
 
 export default transactionsSlice.reducer

@@ -1,10 +1,10 @@
 import Link from "next/link"
-import { useState } from "react";
 import styles from './Navbar.module.scss';
 import { useRouter } from 'next/router'
+import { useSelector } from "react-redux";
+import { selectUserAddress } from "../../../store/slices/user";
 
 export default function Page() {
-
   const links = [
     {
       name: "Welcome",
@@ -29,9 +29,15 @@ export default function Page() {
   ]
 
   const {asPath} = useRouter();
+  const address = useSelector(selectUserAddress)
 
   return (
     <aside className={styles.sidebar}>
+      {address !== '' &&
+        <div className={styles.info}>
+          <p><span>connected as<br /></span>{address.slice(0, 15)}...</p>
+        </div>
+      }
       <nav>
         <ul>
           {links.map((link, i) => (

@@ -3,35 +3,21 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useState } from 'react';
 import { ethers } from 'ethers';
 import Notif from '../notif/Notif';
+import { useDispatch, useSelector } from 'react-redux';
+import { connectUser, selectUserAddress } from '../../../store/slices/user';
+import { addNotif } from '../../../store/slices/notifs';
 
-export default function Page({company, setInvestingCompany, addNotif}) {
+export default function Page({ company, setInvestingCompany }) {
   const [connected, setConnected] = useState(false);
-  const [addressUser, setAddressUser] = useState("");
   const [amount, setAmount] = useState("");
+  const dispacth = useDispatch()
+  const userAddress = useSelector(selectUserAddress)
   
-  if (!company.id) 
+  if (!company.id)
   return <></>
   
   let provider = null
   let signer = null
-
-  const connect = async () => {
-      provider = new ethers.providers.Web3Provider(window.ethereum);
-      if (provider) {
-        await provider.send("eth_requestAccounts", []);
-        signer = provider.getSigner();
-        if (signer) {
-          setAddressUser(await signer.getAddress());
-          setConnected(true);
-
-          addNotif("Connected")
-        } else {
-          console.error('Signer is null');
-        }
-      } else {
-        console.error('Provider is null');
-      }
-  };
 
   const invest = async () => {
       if (amount == 0 ||amount == "")
@@ -39,7 +25,7 @@ export default function Page({company, setInvestingCompany, addNotif}) {
 
       const transactionRequest = {
           to: company.address, //platform Goerli test address
-          from: addressUser,
+          from: userAddress,
           value: ethers.utils.parseEther(amount)
       };
 
@@ -49,12 +35,17 @@ export default function Page({company, setInvestingCompany, addNotif}) {
       if (provider && signer) {
         await signer.sendTransaction(transactionRequest)
         .then(() => {
-          addNotif("Transaction successful")
+          dispacth(addNotif({
+            msg: "Transaction successful"
+          }))
           setInvestingCompany({})
         })
         .catch(err => {
           if (err.code === "INSUFFICIENT_FUNDS") {
-            addNotif("Not enough funds", "danger")
+            dispacth(addNotif({
+              msg: "Not enough funds",
+              type: "danger"
+            }))
           }
         });
       }
@@ -70,17 +61,17 @@ export default function Page({company, setInvestingCompany, addNotif}) {
           <img src={company.logo} />
         </div>
         <div>
-          {!connected && (
+          {!userAddress && (
             <>
               <p>Connect to your wallet</p>
-              <button className="btn" onClick={connect}>
+              <button className="btn" onClick={() => dispacth(connectUser())}>
                   Connect
               </button>
             </>
           )}
-          {connected && (
+          {userAddress && (
             <>
-              <p>Connected with:<br/><span>{addressUser}</span></p>
+              <p>Connected with:<br/><span>{userAddress}</span></p>
               <input type="number" placeholder='Amount (eth)' value={amount} onChange={ (e) => setAmount(e.target.value) } />
               <button className='btn' onClick={invest}>
                   Invest

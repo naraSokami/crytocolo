@@ -1,6 +1,6 @@
 import styles from './Loader.module.sass';
 
-export default function ({type, message}) {
+export default function () {
   return (            
     <div className={styles.loader}>
       
