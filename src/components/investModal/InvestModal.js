@@ -24,9 +24,9 @@ export default function Page({ company, setInvestingCompany }) {
         return 
 
       const transactionRequest = {
-          to: company.address, //platform Goerli test address
-          from: userAddress,
-          value: ethers.utils.parseEther(amount)
+        to: company.address, //platform Goerli test address
+        from: userAddress,
+        value: ethers.utils.parseEther(amount)
       };
 
       provider = new ethers.providers.Web3Provider(window.ethereum);
