@@ -41,10 +41,10 @@ export default function ({supports}) {
               <div>
                 <h4>Transfert amount</h4>
                 {
-                  support.value < 1000000000 ?
-                  <p>{support.value}<span>wei</span></p> 
-                  :
-                  <p>{support.value / 10 ** 18}<span> ETH</span></p> 
+                  // support.value < 1000000000 ?
+                  // <p>{support.value}<span>wei</span></p>
+                  // :
+                  <p>{support.value / 10 ** 18}<span> ETH</span></p>
                 }
               </div>
             </Link>
@@ -65,15 +65,21 @@ export default function ({supports}) {
 export async function getServerSideProps() {
   const {supports, companies} = await import("/data/data.json")
 
+  let finalSupports = []
+
   for (const support of supports) {
-    support.company = {
-      ...companies.find(company => company.id === support.company_id)
-    }
+    const company = companies.find(company => company.id === support.company_id)
+
+    if (!company)
+      continue
+
+    support.company = company
+    finalSupports.push(support)
   }
 
   return {
     props: {
-      supports: supports || []
+      supports: finalSupports || []
     },
   }
 }
