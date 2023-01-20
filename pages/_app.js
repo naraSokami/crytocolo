@@ -6,6 +6,7 @@ import store from '../store/index'
 import { Provider, useSelector } from 'react-redux' 
 import { selectnotifs } from '../store/slices/notifs';
 import Notifs from '../src/components/notifs/Notifs';
+import Script from 'next/script';
 
 export default function App({ Component, pageProps }) {
   return (
@@ -13,6 +14,7 @@ export default function App({ Component, pageProps }) {
       <div style={{
         display: 'flex',
       }}>
+        <Script src="/js/scroll-animation.js" />
         <Navbar />
         <div style={{
           width: '100%',
