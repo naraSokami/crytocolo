@@ -5,7 +5,7 @@ import { Canvas, useFrame } from "react-three-fiber";
 import { Block, useBlock } from "../src/three/blocks";
 import state from "../src/three/store";
 import { Environment, PerspectiveCamera, useGLTF } from '@react-three/drei';
-import { useHover, useDrag } from 'react-use-gesture';
+import { useHover } from 'react-use-gesture';
 
 function Plane({ color = "white", ...props }) {
   return (
@@ -71,22 +71,8 @@ function Stripe() {
 }
 
 function DubaiTower() {
-  const glb = useGLTF("/models/plane.glb", true)
-  const [{ x, y }, set] = useState({ x: 0, y: 0 });
-
-  const bind = useDrag(({ offset: [x, y] }) => {
-    set({ x, y });
-  });
-
-  return (
-    <primitive
-      object={glb.scene}
-      scale={[0.1, 0.1, 0.1]}
-      position={[x, y, 0]}
-      dispose={null}
-      {...bind()}
-    />
-  );
+  const glb = useGLTF("/models/dubai.glb", true)
+  return <primitive object={glb.scene} dispose={null} />
 }
 export default function () {
   const scrollArea = useRef();
@@ -99,7 +85,7 @@ export default function () {
         perspective
         camera={{ zoom: state.zoom, position: [0, 0, 500] }}
       >
-      <Suspense fallback={true}>
+      <Suspense fallback={<Loader />}>
           {/* First section */}
           <Block factor={1.5} offset={0}>
               <Content left >
