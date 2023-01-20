@@ -5,7 +5,7 @@ import { Canvas, useFrame } from "react-three-fiber";
 import { Block, useBlock } from "../src/three/blocks";
 import state from "../src/three/store";
 import { Environment, PerspectiveCamera, useGLTF } from '@react-three/drei';
-import { useHover } from 'react-use-gesture';
+import { useHover, useDrag } from 'react-use-gesture';
 
 function Plane({ color = "white", ...props }) {
   return (
@@ -70,30 +70,33 @@ function Stripe() {
   );
 }
 
-function EcoLight() {
-  const glb = useGLTF("/models/ecoLight/scene.gltf", true)
-  return <primitive object={glb.scene} dispose={null} />
-}
-
 function DubaiTower() {
-  const glb = useGLTF("/models/dubai.glb", true)
-  return <primitive object={glb.scene} dispose={null} />
-}
+  const glb = useGLTF("/models/plane.glb", true)
+  const [{ x, y }, set] = useState({ x: 0, y: 0 });
 
+  const bind = useDrag(({ offset: [x, y] }) => {
+    set({ x, y });
+  });
+
+  return (
+    <primitive
+      object={glb.scene}
+      scale={[0.1, 0.1, 0.1]}
+      position={[x, y, 0]}
+      dispose={null}
+      {...bind()}
+    />
+  );
+}
 export default function () {
-  const [hovered, setHovered] = useState(false)
   const scrollArea = useRef();
   const onScroll = (e) => (state.top.current = e.target.scrollTop);
-  useEffect(() => void onScroll({ target: scrollArea.current }), []);
-  const camera = useRef(null);
-
-  const bind = useHover(({ hovering }) => setHovered(hovering))
-
+  
   return (
     <>
       <Canvas 
         linear
-        orthographic
+        perspective
         camera={{ zoom: state.zoom, position: [0, 0, 500] }}
       >
       <Suspense fallback={true}>
