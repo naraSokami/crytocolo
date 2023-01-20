@@ -15,7 +15,7 @@ function numberExponentToLarge(numIn) {
   var power = str[1];                                    // Get Exponent (Power) (could be + or -)
   if (power ==0 || power ==-0) return sign+str[0];       // If 0 exponents (i.e. 0|-0|+0) then That's any easy one
  
-  var deciSp = 1.1.toLocaleString().substring(1,2);  // Get Deciaml Separator
+  var deciSp = /* 1.1.toLocaleString().substring(1,2); */ '.'  // Get Deciaml Separator
   str = str[0].split(deciSp);                        // Split the Base Number into LH and RH at the decimal point
   var baseRH = str[1] || "",                         // RH Base part. Make sure we have a RH fraction else ""
       baseLH = str[0];                               // LH base part.
@@ -26,7 +26,7 @@ function numberExponentToLarge(numIn) {
       if (baseRH.charAt(baseRH.length-1) ==deciSp) baseRH =baseRH.slice(0,-1); // If decSep at RH end? => remove it
  
    } else {         // ------- Negative Exponents (Process the LH Base Part)
-      let num= Math.abs(power) - baseLH.length;                               // Delta necessary 0's
+      let num= Math.abs(power) - baseLH.length;                           // Delta necessary 0's
       if (num>0) baseLH = "0".repeat(num) + baseLH;                       // Pad with "0" at LH
       baseLH = baseLH.slice(0, power) + deciSp + baseLH.slice(power);     // Insert "." at the correct place into LH base
       if (baseLH.charAt(0) == deciSp) baseLH="0" + baseLH;                // If decSep at LH most? => add "0"
