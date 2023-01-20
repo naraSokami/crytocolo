@@ -51,7 +51,7 @@ export const selectFromAddressTransactions = ({address}) => (state) => {
     return []
     
   return state.transactions.transactions
-    .filter(tr => tr.from.toLowerCase() === address.toLowerCase())
+    .filter(tr => tr.from.toLowerCase() === address.toLowerCase() && companies.find(company => company.address.toLowerCase() == tr.to.toLowerCase()))
     .map(tr => ({
       ...tr,
       company: companies.find(company => company.address.toLowerCase() == tr.to.toLowerCase())
