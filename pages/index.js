@@ -1,6 +1,6 @@
 import styles from '../styles/pages/welcome.module.sass';
 import * as THREE from "three";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, Suspense } from "react";
 import { Canvas, useFrame } from "react-three-fiber";
 import { Block, useBlock } from "../src/three/blocks";
 import state from "../src/three/store";
@@ -76,7 +76,7 @@ function EcoLight() {
 }
 
 function DubaiTower() {
-  const glb = useGLTF("/models/pudgy_black_cat.glb", true)
+  const glb = useGLTF("/models/dubai.glb", true)
   return <primitive object={glb.scene} dispose={null} />
 }
 
@@ -91,38 +91,40 @@ export default function () {
 
   return (
     <>
-      <Canvas
+      <Canvas 
         linear
         orthographic
         camera={{ zoom: state.zoom, position: [0, 0, 500] }}
       >
-        {/* First section */}
-        <Block factor={1.5} offset={0}>
-            <Content left >
-              <ambientLight />
-              <DubaiTower />
+      <Suspense fallback={true}>
+          {/* First section */}
+          <Block factor={1.5} offset={0}>
+              <Content left >
+                <ambientLight />
+                <DubaiTower />
+              </Content>
+          </Block>
+          {/* Second section */}
+          <Block factor={2.0} offset={1}>
+            <Content />
+          </Block>
+          {/* Stripe */}
+          <Block factor={-1.0} offset={1}>
+            <Stripe />
+          </Block>
+          {/* Last section */}
+          <Block factor={1.5} offset={2}>
+            <Content left>
+              <Block factor={-0.5}>
+                <Cross />
+              </Block>
             </Content>
-        </Block>
-        {/* Second section */}
-        <Block factor={2.0} offset={1}>
-          <Content />
-        </Block>
-        {/* Stripe */}
-        <Block factor={-1.0} offset={1}>
-          <Stripe />
-        </Block>
-        {/* Last section */}
-        <Block factor={1.5} offset={2}>
-          <Content left>
-            <Block factor={-0.5}>
-              <Cross />
-            </Block>
-          </Content>
-        </Block>
-        <Block factor={1.5} offset={3}>
-          <Content />
-        </Block>
-        <Environment preset={'studio'} blur={0.65} />
+          </Block>
+          <Block factor={1.5} offset={3}>
+            <Content />
+          </Block>
+          <Environment preset={'studio'} blur={0.65} />
+        </Suspense>
       </Canvas>
       <div className={styles.scrollArea} ref={scrollArea} onScroll={onScroll}>
         <div style={{ height: `${state.pages * 100}vh` }} />
