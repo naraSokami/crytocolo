@@ -114,6 +114,11 @@ body {
   overflow: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+
+}
+
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -197,5 +202,556 @@ input:focus, textarea:focus {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+
+
+
+
+
+
+
+
+/*   SANDBOX    */
+
+.bthsTech__article {
+  width: 100%;
+  height: 100%;
+  color: white;
+  /* background-color: black; */
+  font-family: var(--font-family);
+  font-weight: bolder;
+  /* word-break: break-word; */
+  padding: 25px;
+}
+
+.bthsTech__article-content {
+  display: flex;
+  justify-content: center;
+  min-height: 100%;
+}
+.bthsTech__article-content_container {
+  flex: 0 0 80%;
+  margin: 10px;
+}
+
+.bthsTech__article-content_container_title {
+  /* word-break: break-word; */
+  white-space: nowrap;
+  text-align: center;
+  margin: 1rem;
+}
+
+.bthsTech__article-content_container_text {
+  text-align: center;
+}
+
+.bthsTech__brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100vh;
+}
+
+.bthsTech__brand-content {
+  text-align: center;
+  color: white;
+  font-family: var(--font-family);
+  font-size: 25px;
+  max-width: 700px;
+  margin: 120px 0;
+  padding: 0 20px;
+
+  -webkit-animation: tracking-in-expand 2s cubic-bezier(0.215, 0.61, 0.355, 1)
+    both;
+  animation: tracking-in-expand 2s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+}
+
+.bthsTech__brand-content h1 {
+  text-align: center;
+}
+
+@media screen and (max-width: 1050px) {
+  .bthsTech__brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bthsTech__brand-content {
+    font-size: 15px;
+    margin: 3rem;
+  }
+}
+
+@-webkit-keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.bthsTech__profile {
+  width: 100%;
+  height: fit-content;
+  color: white;
+  font-family: var(--font-family);
+  font-weight: bolder;
+  word-wrap: break-word;
+}
+.bthsTech__profile-content {
+  /* display: flex;
+  justify-content: center; */
+  /* word-wrap: break-word; */
+  min-height: 100%;
+}
+.bthsTech__profile-content_container {
+  /* background-color: black; */
+  display: flex;
+  align-items: center;
+  flex: 0 0 80%;
+  margin-top: 20px;
+  color: black;
+}
+.bthsTech__profile-content_image {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  /* background-color: black; */
+}
+.bthsTech__profile-content_image img {
+  width: 125px;
+  height: 125px;
+  border: white 5px solid;
+  border-radius: 50%;
+  background-size: cover;
+}
+/* .bthsTech__profilepx;
+  margin: 25px;
+} */
+.bthsTech__profile-content_container_bio {
+  margin-left: 2rem;
+  color: white;
+  overflow: auto;
+}
+
+.bthsTech__profile-content_container_name {
+  word-break: keep-all;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 24px;
+  color: white;
+}
+
+@media screen and (max-width: 700px) {
+  .bthsTech__profile-content_container {
+    flex-direction: column;
+  }
+  .bthsTech__profile-content_image {
+    width: 100px;
+    height: 100px;
+  }
+  .bthsTech__profile-content_image img {
+    /* flex-basis: auto; */
+    width: 100px;
+    height: 100px;
+    margin: 0;
+  }
+}
+@media screen and (max-width: 1050px) {
+  .bthsTech_profile {
+    width: 75%;
+    height: 75%;
+  }
+  .bthsTech__profile-content_container_name {
+    font-size: 12px;
+  }
+}
+
+.bthsTech__timeline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  transform: translateY(150px);
+  opacity: 0;
+  transition: 3s all ease;
+}
+.bthsTech__timeline.reveal {
+  position: relative;
+  transform: translateY(150px);
+  transition: 3s all ease;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.bthsTech__timeline_line {
+  width: 80%;
+}
+
+.vertical-line {
+  width: 1px;
+  height: 100px;
+  background-color: white;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  border-radius: 100%;
+}
+
+.top {
+  transform: translate(-50%, -100%);
+}
+
+.bottom {
+  transform: translate(-50%, 500%);
+}
+
+.bthsTech__timeline_line_pos1 {
+  transform: translate(10vw, -50px);
+}
+
+.bthsTech__timeline_line_pos2 {
+  transform: translate(25vw, 50px);
+}
+
+.bthsTech__timeline_line_pos3 {
+  transform: translate(40vw, -50px);
+}
+
+.bthsTech__timeline_line_pos4 {
+  transform: translate(55vw, 50px);
+}
+
+.bthsTech__timeline_line_pos5 {
+  transform: translate(70vw, -50px);
+}
+
+.bthsTech__timeline_line_pos1_article {
+  transform: translateY(500px);
+}
+
+.bthsTech__timeline_line_pos1_container {
+  width: 400px;
+  height: 200px;
+  text-align: center;
+  /* background-color: white; */
+}
+
+.top_container {
+  transform: translate(-50%, -150%);
+}
+
+.bottom_container {
+  transform: translate(-50%, 50%);
+}
+
+@media (max-width: 700px) {
+}
+
+.bthsTech__contactUs {
+  font-family: var(--font-family);
+  text-align: center;
+  color: white;
+  margin: 150px;
+}
+
+.bthsTech__contactUs-content_container_title {
+  margin-bottom: 40px;
+}
+.bthsTech__contactUs-content_container_contact_info {
+  font-size: 1.5rem;
+}
+
+.bthsTech__footer {
+  font-family: var(--font-family);
+  color: white;
+  text-align: center;
+  height: fit-content;
+  font-size: 1.5rem;
+}
+.bthsTech__footer-content_container_socials img {
+  margin: 20px;
+}
+
+.bthsTech__whatAreWe {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 200px;
+}
+.bthsTech__3d {
+  width: 50vw;
+  height: 60vh;
+}
+@media screen and (max-width: 1050px) {
+  .bthsTech__whatAreWe {
+    flex-direction: column;
+    align-items: center;
+  }
+  .bthsTech__3d {
+    width: 100vw;
+  }
+}
+
+.bthsTech__whatBTHSTech {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 200px;
+}
+.bthsTech__3d {
+  width: 50vw;
+  height: 60vh;
+}
+.bthsTech__whatBTHSTech .bthsTech__article-content {
+  flex-direction: row-reverse;
+}
+@media screen and (max-width: 1050px) {
+  .bthsTech__whatBTHSTech {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .bthsTech__3d {
+    width: 100vw;
+  }
+}
+
+.bthsTech__whoBTHSTech_container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+
+  justify-content: center;
+}
+.bthsTech__whoBTHSTech {
+  position: relative;
+  transform: translateY(150px);
+  opacity: 0;
+  transition: 3s all ease;
+}
+.bthsTech__whoBTHSTech.reveal {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.bthsTech__whoBTHSTech_container_vertical-line {
+  width: 1px;
+  height: 100vh;
+
+  background-color: white;
+}
+
+.horizontal-line {
+  width: 200px;
+  height: 1px;
+
+  background-color: white;
+}
+
+.left {
+  transform: translate(-100%, -50%);
+}
+
+.right {
+  transform: translate(1000%, -50%);
+}
+
+.profile_container {
+  width: 400px;
+  height: 200px;
+}
+
+.left_container {
+  transform: translate(-110%, -60%);
+}
+
+.right_container {
+  transform: translate(60%, -60%);
+}
+
+.bthsTech__whoBTHSTech_container_vertical-line_pos1 {
+  transform: translate(-200px, 10vh);
+}
+
+.bthsTech__whoBTHSTech_container_vertical-line_pos2 {
+  transform: translateY(27.5vh);
+}
+
+.bthsTech__whoBTHSTech_container_vertical-line_pos3 {
+  transform: translate(-200px, 50vh);
+}
+
+.bthsTech__whoBTHSTech_container_vertical-line_pos4 {
+  transform: translateY(70vh);
+}
+
+.bthsTech__whoBTHSTech_container_vertical-line_pos5 {
+  transform: translate(-200px, 90vh);
+}
+
+.bthsTech__whoBTHSTech {
+  width: 100%;
+}
+.bthsTech__whoBTHSTech-profiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* .bthsTech__whoBTHSTech-profile {
+  width: 500px;
+  height: 300px;
+} */
+@media screen and (max-width: 1050px) {
+  /* .horizontal-line {
+    width: 100px;
+  } */
+  /* .left_container {
+    transform: translate(-70%, -45%);
+  }
+  .right_container {
+    transform: translate(-25%, -45%);
+  }
+  .circle.right {
+    transform: translate(500%, -45%);
+  }
+  .circle.left {
+    transform: translate(-100%, -45%);
+  } */
+  .bthsTech__whoBTHSTech_container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    margin-left: 0;
+    padding: 25px;
+    justify-content: flex-start;
+  }
+  .horizontal-line {
+    width: 10vw;
+    height: 1px;
+
+    background-color: white;
+  }
+  .profile_container.left_container {
+    transform: translate(15vw, -45%);
+  }
+  .profile_container.right_container {
+    transform: translate(15vw, -45%);
+  }
+  .circle.left {
+    transform: translate(10vw, -50%);
+  }
+  .right {
+    transform: translate(10vw, -50%);
+  }
+  .bthsTech__whoBTHSTech_container_vertical-line_pos1 {
+    transform: translateY(0vh);
+  }
+
+  .bthsTech__whoBTHSTech_container_vertical-line_pos2 {
+    transform: translateY(25vh);
+  }
+
+  .bthsTech__whoBTHSTech_container_vertical-line_pos3 {
+    transform: translateY(calc(25vh * 2));
+  }
+
+  .bthsTech__whoBTHSTech_container_vertical-line_pos4 {
+    transform: translateY(calc(25vh * 3));
+  }
+
+  .bthsTech__whoBTHSTech_container_vertical-line_pos5 {
+    transform: translateY(99.7vh);
+  }
+  .bthsTech__profile-content_container_name {
+    font-size: 10px;
+  }
+  .bthsTech__profile-content_container_bio-info {
+    display: none;
+  }
+  .profile_container {
+    width: 300px;
+  }
+}
+
+
+
+
+/* SCROLL-DOWN */
+
+.scroll-down {
+  height: 50px;
+  width: 30px;
+  border: 2px solid white;
+  position: relative;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+.scroll-down::before,
+.scroll-down::after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  height: 10px;
+  width: 10px;
+  transform: translate(-50%, -100%) rotate(45deg);
+  border: 2px solid white;
+  border-top: transparent;
+  border-left: transparent;
+  animation: scroll-down 1s ease-in-out infinite;
+}
+.scroll-down::before {
+  top: 30%;
+  animation-delay: 0.3s;
+  /* animation: scroll-down 1s ease-in-out infinite; */
+}
+
+@keyframes scroll-down {
+  0% {
+    /* top:20%; */
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    top: 90%;
+    opacity: 0;
   }
 }
