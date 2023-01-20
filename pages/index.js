@@ -39,8 +39,9 @@ function Content({ left, children }) {
   const aspect = 1.75;
   const alignRight = (canvasWidth - contentMaxWidth - margin) / 2;
   return (
-    <group position={[alignRight * (left ? -1 : 1), 0, 0]}>
-        {/* <Plane
+    <group position={[alignRight * (left ? -1 : 1), 0, 0]} onPointerDown={(e) => console.log('down')}>
+      
+        {/* <Plane 
           scale={[contentMaxWidth, contentMaxWidth / aspect, 1]}
           color="#bfe2ca"
         /> */}
@@ -53,6 +54,7 @@ function Content({ left, children }) {
         color="#ffffff"
         position={[0, 20, 10]}
       /> */}
+
       {children}
     </group>
   );
@@ -71,7 +73,7 @@ function Stripe() {
 }
 
 function DubaiTower() {
-  const glb = useGLTF("/models/dubai.glb", true)
+  const glb = useGLTF("/models/pudgy_black_cat.glb", true)
   return <primitive object={glb.scene} dispose={null} />
 }
 export default function () {
@@ -80,7 +82,7 @@ export default function () {
   
   return (
     <>
-      <Canvas 
+      <Canvas
         linear
         perspective
         camera={{ zoom: state.zoom, position: [0, 0, 500] }}
@@ -88,9 +90,9 @@ export default function () {
       <Suspense fallback={<Loader />}>
           {/* First section */}
           <Block factor={1.5} offset={0}>
-              <Content left >
-                <ambientLight />
-                <DubaiTower />
+              <Content left>
+                  <ambientLight />
+                  <PlaneThatFlies />
               </Content>
           </Block>
           {/* Second section */}
@@ -99,7 +101,7 @@ export default function () {
           </Block>
           {/* Stripe */}
           <Block factor={-1.0} offset={1}>
-            <Stripe />
+            {/* <Stripe /> */}
           </Block>
           {/* Last section */}
           <Block factor={1.5} offset={2}>
@@ -110,7 +112,11 @@ export default function () {
             </Content>
           </Block>
           <Block factor={1.5} offset={3}>
-            <Content />
+            {/* <Content /> */}
+            <mesh onClick={() => alert('Hellooo')} >
+              <boxGeometry />
+              <meshPhongMaterial color="royalblue" />
+            </mesh>
           </Block>
           <Environment preset={'studio'} blur={0.65} />
         </Suspense>
