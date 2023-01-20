@@ -6,6 +6,8 @@ import { Block, useBlock } from "../src/three/blocks";
 import state from "../src/three/store";
 import { Environment, PerspectiveCamera, useGLTF } from '@react-three/drei';
 import { useHover } from 'react-use-gesture';
+import Loader from '../src/three/loader';
+
 
 function Plane({ color = "white", ...props }) {
   return (
@@ -76,7 +78,7 @@ function EcoLight() {
 }
 
 function DubaiTower() {
-  const glb = useGLTF("/models/dubai.glb", true)
+  const glb = useGLTF("/models/pudgy_black_cat.glb", true)
   return <primitive object={glb.scene} dispose={null} />
 }
 
@@ -96,7 +98,7 @@ export default function () {
         orthographic
         camera={{ zoom: state.zoom, position: [0, 0, 500] }}
       >
-      <Suspense fallback={true}>
+      <Suspense fallback={<Loader />}>
           {/* First section */}
           <Block factor={1.5} offset={0}>
               <Content left >
